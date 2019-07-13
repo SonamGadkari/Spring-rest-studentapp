@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-public class StudentController {
+public class StudentController {	
 
 	@GetMapping("/students")
 	public List<Student> getStudents()
@@ -21,4 +22,13 @@ public class StudentController {
 		return students;
 	}
 	
+	@GetMapping("/students/{studentId}")
+	public Student getStudents(@PathVariable int studentId)
+	{
+		List<Student> students=new ArrayList<Student>();
+		students.add(new Student("Sonam","Gadekari"));
+		students.add(new Student("Suman","Gadekari"));
+		students.add(new Student("Rohith","Gadekari"));				
+		return students.get(studentId);
+	}
 }
